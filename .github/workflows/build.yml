@@ -78,12 +78,13 @@ jobs:
       - uses: actions/checkout@v4
         with: 
           repository: allure-framework/allure3
+          path: allure3
       - uses: actions/setup-node@v4
         with:
           node-version: 20
       - run: |
-          npx --global allure log packages/reader/test/resources/xcresultdata/attachments/screenshots.xcresult
-          npx --global allure awesome packages/reader/test/resources/xcresultdata/attachments/screenshots.xcresult --single-file -o allure-report
+          npx allure log allure3/packages/reader/test/resources/xcresultdata/attachments/screenshots.xcresult
+          npx allure awesome allure3/packages/reader/test/resources/xcresultdata/attachments/screenshots.xcresult --single-file -o allure-report
       - name: Upload Allure Report
         uses: actions/upload-artifact@v4
         with:
