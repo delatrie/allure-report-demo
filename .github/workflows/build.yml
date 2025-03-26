@@ -82,10 +82,8 @@ jobs:
         with:
           node-version: 20
       - run: |
-          sudo xcode-select -s /Applications/Xcode_16.2.app/Contents/Developer
-          yarn install 
-          yarn build
-          yarn allure awesome packages/reader/test/resources/xcresultdata/parameters/twoParameters.xcresult --single-file -o allure-report
+          npx --global allure log packages/reader/test/resources/xcresultdata/attachments/screenshots.xcresult
+          npx --global allure awesome packages/reader/test/resources/xcresultdata/attachments/screenshots.xcresult --single-file -o allure-report
       - name: Upload Allure Report
         uses: actions/upload-artifact@v4
         with:
