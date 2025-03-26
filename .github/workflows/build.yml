@@ -82,7 +82,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+          
+        # the first xcrun command initializes xcode; it prevents timeout errors in allure commands
+        # once allure-framework/allure3#218 is released, it won't be needed
+        # another option is to build the latest version from allure3 but takes more time
       - run: |
+          xcrun xcresulttool version
           npx allure log allure3/packages/reader/test/resources/xcresultdata/attachments/screenshots.xcresult
           npx allure awesome allure3/packages/reader/test/resources/xcresultdata/attachments/screenshots.xcresult --single-file -o allure-report
       - name: Upload Allure Report
